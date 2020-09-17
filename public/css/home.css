@@ -1,0 +1,223 @@
+body {
+  padding-top: 56px;
+  background-color: #1A1A1F;
+}
+.ads p{
+  text-align: center;
+}
+.page-wrapper{
+  margin-bottom: 30px;
+}
+.post-slider .post-wrapper{ /* carousel size */
+  width: 99%;
+  height: 160px;
+  margin: 0px auto;
+  overflow: hidden;
+}
+
+.post-slider .post-wrapper .post{  /* image container size */
+  width: 100px;
+  height: 140px;
+  margin: 0px 10px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.post-slider .slider-title{
+  text-align: center;
+  margin: 20px auto;
+}
+.post-slider .next{
+  position: absolute;
+  top: 50%;
+  right: 60px;
+  font-size: 2em;
+  cursor: pointer;
+}
+.post-slider .prev{
+  position: absolute;
+  top: 50%;
+  left: 60px;
+  font-size: 2em;
+  cursor: pointer;
+}
+@media (min-width: 300px) and (max-width: 617px) {
+    .hidePN {
+        display: none;
+    }
+}
+.post-wrapper img{   /* image size */
+  width: 100%;
+  height: 137px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.card img{
+  width: 100%;
+  height: 9vw;
+  object-fit: cover;
+}
+
+/* image size by window width */
+@media (min-width: 590px) and (max-width: 770px) {
+  .card img{
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+  }
+  .movieName, .rating{
+    font-size: 0.8em;
+  }
+  .sidebar{
+    display: none;
+  }
+}
+@media (min-width: 400px) and (max-width: 653px) {
+  .card img{
+    width: 100%;
+    height: 18vw;
+    object-fit: cover;
+  }
+  .movieName, .rating{
+    font-size: 0.7em;
+  }
+  .sidebar{
+    display: none;
+  }
+}
+@media (min-width: 770px) and (max-width: 1013px) {
+  .card img{
+    width: 100%;
+    height: 11vw;
+    object-fit: cover;
+  }
+}
+
+/* image name */
+.movieName{
+  width:100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding: 2px;
+  font-family: serif;
+  color: white;
+}
+
+
+/* label and hover */
+.bottom-left {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  background-color: red;
+  padding: 0.1em;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+.rating{
+  display: inline;
+}
+
+.label {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.label:hover .image {
+  opacity: 0.6;
+}
+.label:hover .middle {
+  opacity: 1;
+}
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+.image {
+  opacity: 1;
+  display: block;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+.playicon{
+  font-size: 2em;
+  cursor: pointer;
+}
+
+
+
+.gallery-items .item.hide{
+	display: none;
+}
+.gallery-items .item.show{
+	display: block;
+	animation: show .5s ease;
+}
+@keyframes show{
+    0%{
+    	opacity:0;
+    	transform: scale(0.9);
+    }
+    100%{
+    	opacity:1;
+    	transform: scale(1);
+    }
+}
+.pagination{
+	width: 100%;
+	float: left;
+	padding:15px;
+	text-align: center;
+}
+.pagination div{
+	display: inline-block;
+	margin:0 10px;
+}
+.pagination .page{
+	color:gray;
+  padding-bottom: 5px;
+}
+.pagination .prevv,.pagination .nextt{
+ cursor: pointer;
+ font-size: 2rem;
+ border: 1px solid #ccc;
+ border-radius: 5px;
+ padding: 7px 7px;
+ color: grey;
+}
+
+.pagination .prevv.disabled,
+.pagination .nextt.disabled{
+	border-color: gray;
+	color:#202022;
+	pointer-events: none;
+}
+.middle-text{
+  margin: 0px 10px 0px 10px;
+  border: 1px solid #ccc;
+  padding: 7px 7px;
+  border-radius: 5px;
+  color: white;
+  font-family: 'Lobster', cursive;color: white;
+  font-weight: normal;
+}
+.item a{
+  text-decoration: none;
+  color: black;
+}
+.item .movieName:hover{
+  color: hotpink;
+  white-space: wrap;
+  text-overflow: clip;
+}
+h5{
+  font-family: 'Lobster', cursive;color: white;
+}

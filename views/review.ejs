@@ -1,0 +1,93 @@
+<%- include('partials/reviewHead'); %>
+
+
+
+<div class="main-wrapper">
+
+  <!-- Start Feature Area -->
+  <section class="featured-area pt-50 pb-100">
+    <div class="container">
+      <div class="row">
+
+
+        <!-- carousel -->
+        <div class="col-md-6">
+          <div class="feature-right">
+
+            <img class="d-block w-100" src="<%= img %>" alt="First slide" style="max-width:900px; max-height:600px !important;object-fit: cover;border-radius:10px;">
+          </div>
+        </div>
+
+
+
+
+        <div class="col-md-6">
+          <div class="feature-left">
+            <h2>
+              Review for <br>
+              <span><%= name %></span>
+            </h2>
+            <p>
+              <%= review %>
+
+            </p>
+            <button class="btn btn-secondary primary-btn hover d-inline-flex align-items-center"><span class="mr-10">DOWNLOAD</span><span class="lnr lnr-arrow-right"></span></button>
+          </div>
+        </div>
+
+
+
+
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="comments container" style="margin-top: 50px;margin-bottom:50px;background-color:#E5E0E4;padding:20px;width:75%;border-radius:10px;">
+  <form class="" action="/comment" method="post">
+    <h3 style="font-family: 'Lobster', cursive;">Comments</h3>
+    <div class="form-inline mt-2">
+      <input style="display:none;" type="text" name="movieN" value="<%= name %>" autocomplete="off">
+      <input class="form-control col-10 mr-2" type="text" name="comment" value="" autocomplete="off">
+      <button class="btn btn-primary" type="submit" name="button">publish</button>
+    </div>
+  </form>
+
+
+
+
+    <% comment.forEach((function (com) { %>
+    <%if(com.label){%>
+        <article class="comment mb-2" style="margin-top: 20px;">
+    <div class="comment-img">
+      <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 img" style="color:grey;width:50px;height:50px;font-size:2rem;"></i>
+    </div>
+    <div class="comment-body">
+
+        <p class="text"><%= com.comment %></p>
+
+      <p class="attribution">by <a href="https://web.facebook.com/minnmawoo.ucsm/"><%= com.label %></a> published at <%= com.date %></p>
+    </div>
+      </article>
+    <% }else{ %>
+        <article class="comment mb-2" style="margin-top: 20px;">
+    <div class="comment-img">
+      <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 img" style="color:grey;width:50px;height:50px;font-size:2rem;"></i>
+    </div>
+    <div class="comment-body">
+      <div class="text">
+        <p><%= com.comment %></p>
+      </div>
+      <p class="attribution">published at <%= com.date %></p>
+    </div>
+  </article>
+    <% } %>
+    <% })); %>
+
+
+
+</div>
+
+</body>
+
+</html>
