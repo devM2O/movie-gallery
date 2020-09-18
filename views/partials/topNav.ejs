@@ -71,7 +71,7 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="/upload/<%= id %>">Upload</a>
+            <a class="collapse-item" href="/upload/">Upload</a>
           </div>
         </div>
       </li>
@@ -152,27 +152,21 @@
                   Comment Center
                 </h6>
 
-                <% var i = 0; %>
-                <% commentNoti.forEach((function (noti) { %>
-                <% i += 1; %>
-                <% if(i <= 5){ %>
 
-                <a class="dropdown-item d-flex align-items-center" href="/select/<%= noti.vname %>">
+
+                <a class="dropdown-item d-flex align-items-center" href="/select/">
                   <div class="mr-3">
                     <div class="icon-circle bg-primary">
                       <i class="fas fa-file-alt text-white"></i>
                     </div>
                   </div>
                   <div>
-                    <div class="small text-gray-500"><%= noti.date %></div>
-                    <span class="font-weight-bold"><%= noti.comment %></span>
+                    <div class="small text-gray-500"></div>
+                    <span class="font-weight-bold"></span>
                   </div>
 
                 </a>
-                <% }else {
-                 return;
-                }
-               })); %>
+
 
                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
               </div>

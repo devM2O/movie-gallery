@@ -17,16 +17,18 @@
 
   <!-- Custom styles for this template-->
   <link href="/cssAdmin/sb-admin-2.css" rel="stylesheet">
+  <style media="screen">
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px #90AFD7 inset !important;
+  </style>
 
 </head>
 
 <body class="" style="background-color: #25262C;">
 
-  <% if(message){ %>
-  <div style="text-align: center;" class="alert message alert-<%= message.type %>">
-    <strong><%= message.intro %> </strong><%= message.message %>
-  </div>
-  <% } %>
 
   <div class="container">
 
@@ -40,7 +42,7 @@
             <!-- Nested Row within Card Body -->
             <div class="row" style="background-color: #E5E0E4;">
               <div class="d-none d-lg-block " id="overlay"></div>
-                <div class="col-lg-6 d-none d-lg-block bg-login-image" ></div>
+              <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
 
 
               <div class="col-lg-6" style="z-index: 3;">
