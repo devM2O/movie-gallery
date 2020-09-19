@@ -2,16 +2,17 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const {ensureNotAuthenticated} = require('../config/auth')
 
 //user model
 const User = require('../models/User');
 
 //user router get
-router.get('/login', (req, res) => res.render('login'));
-router.get('/register', (req, res) => res.render('register'));
+router.get('/login', ensureNotAuthenticated, (req, res) => res.render('login'));
+router.get('/register', ensureNotAuthenticated, (req, res) => res.render('register'));
 
 //Register handle
-router.post('/register', (req, res) =>{
+router.post('/register', ensureNotAuthenticated, (req, res) =>{
   const {name, email, password, repassword} = req.body;
   let errors = [];
 
@@ -74,7 +75,7 @@ router.post('/register', (req, res) =>{
 });
 
 //Login handle
-router.post('/login', (req, res, next)=>{
+router.post('/login', ensureNotAuthenticated, (req, res, next)=>{
   passport.authenticate('local', {
     successRedirect: '/dashboard',
     failureRedirect: '/users/login',

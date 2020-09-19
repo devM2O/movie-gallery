@@ -3,11 +3,7 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
-  <% if(message){ %>
-  <div style="text-align: center;" class="alert message alert-<%= message.type %>">
-    <strong><%= message.intro %> </strong><%= message.message %>
-  </div>
-  <% } %>
+
 
   <form class="md-form" action="/upload" method="post" enctype="multipart/form-data">
 
@@ -31,9 +27,8 @@
     </div>
 
     <div class="form-group">
-      <input class="form-control col-2" type="text" name="adminID" value="<%= id %>" readonly>
       <label for="basic-url">Rating</label>
-      <input class="form-control col-2" type="text" name="rating" value="" autocomplete="off">
+      <input class="form-control col-2" type="text" name="rating" value="<%= id %>" autocomplete="off">
       <label for="basic-url">Movie Name</label>
       <input class="form-control col-10" type="text" name="movieN" value="" autocomplete="off">
       <label for="basic-url">Download Link</label>
