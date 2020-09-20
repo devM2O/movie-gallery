@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
+require('dotenv').config();
+const _ = require("lodash"); //require lodash
 const {ensureAuthenticated} = require('../config/auth');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const nodemailer = require('nodemailer');
 const {ensureNotAuthenticated} = require('../config/auth')
 
 //user model
@@ -16,9 +19,25 @@ const mg = mailgun({
   apiKey: api_key,
   domain: DOMAIN
 });
+//end for mailgun
+
+//jsonwebtoken
 const jwt = require('jsonwebtoken');
 const RESET_PASSWORD_KEY = 'whateveritype123';
-//end for mailgun
+//end jsonwebtoken
+
+
+
+//nodemailer
+//nodemailer step 1
+let transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth:{
+    user:process.env.EMAIL,
+    pass:process.env.PASSWORD
+  }
+})
+//End nodemailer
 
 
 router.get("/4gotpass",ensureNotAuthenticated, function(req, res) {
@@ -29,7 +48,7 @@ router.post("/reset",ensureNotAuthenticated, function(req, res) {
   let email = req.body.userEmail;
 
   if (email == '') {
-    req.flash('failure_msg', 'Please type your email');
+    req.flash('error_msg', 'Please type your email');
     res.redirect('/4gotpass');
   } else {
     User.findOne({
@@ -43,25 +62,35 @@ router.post("/reset",ensureNotAuthenticated, function(req, res) {
         }, RESET_PASSWORD_KEY, {
           expiresIn: '20m'
         })
-        const data = {
-          from: 'noreply@hello.com',
+
+        //nodemailer step 2
+        let mailOptions = {
+          from: 'yourcinema.noreply@gmail.com',
           to: email,
-          subject: 'Password Reset',
+          subject: 'Password Reset Link',
           html: `
                 <h2>Please click on the given link to reset your password!</h2>
                 <P>${"http://localhost:3000"}/resetpassword/${token}</p>
                `
-        };
+        }//end nodemailer step 2
 
         User.updateOne({
           resetLink: token
         }, function(err, success) {
-          mg.messages().send(data, function(error, body) {
-            console.log(body);
-          });
-        });
+          //nodemailer step 3
+          transporter.sendMail(mailOptions, function (err, data) {
+            if(err){
+              console.log("error occors", err);
+            }else {
+              console.log("Email sent!!");
+              req.flash('success_msg', 'Password reset link has been sent to your email');
+              res.redirect('/4gotpass');
+            }
+          });//close of transporter End nodemailer
+
+        }); //close of User.updateOne
       } else {
-        req.flash('failure_msg', 'Your email does not exist in database');
+        req.flash('error_msg', 'Your email does not exist in database');
         res.redirect('/4gotpass');
       }
     });
@@ -84,7 +113,7 @@ router.post("/resetbutton",ensureNotAuthenticated, function(req, res) {
   const hashNew = bcrypt.hashSync(newPass, 10);
 
   if (newPass == '' || confirmPass == '') {
-    req.flash('failure_msg', 'All fields are required');
+    req.flash('error_msg', 'All fields are required');
     res.redirect('/resetpassword/' + resetLink);
   } else {
 
@@ -92,32 +121,41 @@ router.post("/resetbutton",ensureNotAuthenticated, function(req, res) {
       if (resetLink) {
         jwt.verify(resetLink, RESET_PASSWORD_KEY, function(err, decodeData) {
           if (err) {
-            return res.status(401).json({
-              error: "incorrect token or it is expired"
+            req.flash('error_msg', 'Oops! password does not change because link is expired');
+            res.redirect('/users/login');
+          }else {
+            User.findOne({
+              resetLink
+            }, function(err, user) {
+              if (err || !user) {
+                req.flash('error_msg', 'Oops! password does not change because link is expired');
+                res.redirect('/users/login');
+              }else {
+                const obj = {
+                  password: hashNew
+                }
+                user = _.extend(user, obj);   // _.extend()  require lodash
+                user.save(function(err, result) {
+                  if (err) {
+                    return res.status(400).json({
+                      error: "reset password error"
+                    });
+                  } else {
+                    User.updateOne({
+                      resetLink: ''
+                    }, function(err, success) {
+                    req.flash('success_msg', 'Your password has been change');
+                    res.redirect('/users/login');
+                  }
+                  );
+                  }
+                });
+              }
+
+
             });
           }
-          User.findOne({
-            resetLink
-          }, function(err, user) {
-            if (err || !user) {
-              return res.status(400).json({
-                error: "user with this token does not exist"
-              });
-            }
-            const obj = {
-              password: hashNew
-            }
-            user = _.extend(user, obj);
-            user.save(function(err, result) {
-              if (err) {
-                return res.status(400).json({
-                  error: "reset password error"
-                });
-              } else {
-                res.redirect('/admin');
-              }
-            });
-          });
+
         });
       } else {
         return res.status(400).json({
@@ -125,7 +163,7 @@ router.post("/resetbutton",ensureNotAuthenticated, function(req, res) {
         });
       }
     } else {
-      req.flash('failure_msg', 'two passwords do not match');
+      req.flash('error_msg', 'two passwords do not match');
       res.redirect('/resetpassword/' + resetLink);
     }
   }
