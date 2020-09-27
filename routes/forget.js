@@ -44,6 +44,8 @@ router.get("/4gotpass",ensureNotAuthenticated, function(req, res) {
   res.render("forgot-password");
 });
 
+//------------------------------------------------------------------------//
+
 router.post("/reset",ensureNotAuthenticated, function(req, res) {
   let email = req.body.userEmail;
 
@@ -97,6 +99,7 @@ router.post("/reset",ensureNotAuthenticated, function(req, res) {
   }
 });
 
+//------------------------------------------------------------------------//
 
 router.get("/resetpassword/:token",ensureNotAuthenticated, function(req, res) {
   let token = req.params.token;
@@ -105,6 +108,7 @@ router.get("/resetpassword/:token",ensureNotAuthenticated, function(req, res) {
   });
 });
 
+//------------------------------------------------------------------------//
 
 router.post("/resetbutton",ensureNotAuthenticated, function(req, res) {
   const resetLink = req.body.token;
@@ -115,7 +119,7 @@ router.post("/resetbutton",ensureNotAuthenticated, function(req, res) {
   if (newPass == '' || confirmPass == '') {
     req.flash('error_msg', 'All fields are required');
     res.redirect('/resetpassword/' + resetLink);
-  } else {
+  } else {  //start else 1
 
     if (newPass == confirmPass) {
       if (resetLink) {
@@ -166,7 +170,7 @@ router.post("/resetbutton",ensureNotAuthenticated, function(req, res) {
       req.flash('error_msg', 'two passwords do not match');
       res.redirect('/resetpassword/' + resetLink);
     }
-  }
+  } 
 });
 
 

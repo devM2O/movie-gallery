@@ -1,0 +1,153 @@
+
+.hidehide{
+	display: none;
+}
+.showshow{
+	display: block;
+	animation: show .5s ease;
+}
+@keyframes showshow{
+    0%{
+    	opacity:0;
+    	transform: scale(0.9);
+    }
+    100%{
+    	opacity:1;
+    	transform: scale(1);
+    }
+}
+.pagination{
+	width: 100%;
+	float: left;
+	padding:15px;
+	text-align: center;
+}
+.pagination div{
+	display: inline-block;
+	margin:0 10px;
+}
+.pagination .page{
+	color:gray;
+  padding-bottom: 5px;
+}
+.pagination .prevv,.pagination .nextt{
+ cursor: pointer;
+ font-size: 2rem;
+ border: 1px solid #ccc;
+ border-radius: 5px;
+ padding: 7px 7px;
+ color: grey;
+}
+
+.pagination .prevv.disabled,
+.pagination .nextt.disabled{
+	border-color: gray;
+	color:#202022;
+	pointer-events: none;
+}
+.middle-text{
+  margin: 0px 10px 0px 10px;
+  border: 1px solid #ccc;
+  padding: 7px 7px;
+  border-radius: 5px;
+  color: white;
+  font-family: 'Lobster', cursive;color: white;
+  font-weight: normal;
+}
+
+h5{
+  font-family: 'Lobster', cursive;color: white;
+}
+a:hover{color:hotpink; text-decoration: none;}
+
+
+
+
+
+
+
+.comment {
+    overflow: hidden;
+    padding: 0 0 1em;
+    border-bottom: 1px solid #ddd;
+    *zoom: 1;
+}
+
+.comment-img {
+    float: left;
+    margin-right: 33px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.comment-img .img {
+    display: block;
+}
+
+.comment-body {
+    overflow: hidden;
+}
+
+.comment .text {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid grey;
+    border-radius: 5px;
+    color: black;
+}
+
+.comment .text p:last-child {
+    margin: 0;
+}
+
+.comment .attribution {
+    margin: 0.5em 0 0;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Decoration */
+
+.comments,
+.comment {
+    position: relative;
+}
+
+.comments:before,
+.comment:before,
+.comment .text:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 65px;
+}
+
+
+.comment:before {
+    width: 9px;
+    height: 9px;
+    border: 3px solid grey;
+    border-radius: 100px;
+    margin: 16px 0 0 -6px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.2), inset 0 1px 1px rgba(0,0,0,0.1);
+    background: #ccc;
+}
+
+.comment:hover:before {
+    background: orange;
+}
+
+.comment .text:before {
+    top: 18px;
+    left: 78px;
+    width: 9px;
+    height: 9px;
+    border-width: 0 0 1px 1px;
+    border-style: solid;
+    border-color: white;
+    background: grey;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+}​

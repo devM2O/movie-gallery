@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+mongoose.set('useCreateIndex', true);
 
 const commentSchema = new mongoose.Schema({
   label: String,
@@ -7,7 +8,10 @@ const commentSchema = new mongoose.Schema({
   required: true,
   },
   date: String,
-  vname: String
+  flag: {
+    type: String,
+    default: 'true'
+  }
 });
 
 const videoSchema = {
@@ -16,7 +20,13 @@ const videoSchema = {
   review: String,
   image: String,
   link: String,
-  comment: [commentSchema]
+  release: String,
+  categorie: String,
+  popular: {
+    type: String,
+    default: 'normal'
+  }
+  // comment: [commentSchema]
 };
 
 

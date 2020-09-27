@@ -1,3 +1,5 @@
+
+
 /*!
  * Start Bootstrap - SB Admin 2 v4.1.1 (https://startbootstrap.com/themes/sb-admin-2)
  * Copyright 2013-2020 Start Bootstrap
@@ -11091,7 +11093,7 @@ a:focus {
   color: #3a3b45;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 400px) {
   .topbar .dropdown {
     position: relative;
   }
@@ -11106,7 +11108,7 @@ a:focus {
   }
 
   .topbar .dropdown-list .dropdown-item .text-truncate {
-    max-width: 13.375rem;
+    max-width: 9.375rem;
   }
 }
 
@@ -12167,4 +12169,36 @@ body.sidebar-toggled footer.sticky-footer {
   border-radius: 5px;
   z-index: 2;
   opacity: 0.4;
+}
+
+
+
+  /* unvisited link */
+.edit a:link {
+  color: red;
+}
+
+/* visited link */
+.edit a:visited {
+  color: green;
+}
+
+/* mouse over link */
+.edit a:hover {
+  color: hotpink;
+}
+
+/* selected link */
+.edit a:active {
+  color: blue;
+}
+
+#card4img::-webkit-scrollbar {
+    display: none;
+}
+#review::-webkit-scrollbar {
+    display: none;
+}
+.notiBar::-webkit-scrollbar {
+    display: none;
 }

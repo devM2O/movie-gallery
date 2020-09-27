@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="/cssAdmin/sb-admin-2.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+  </head>
+  <body style="background: rgb(49,50,52);
+background: linear-gradient(90deg, rgba(49,50,52,1) 1%, rgba(121,142,145,1) 50%, rgba(129,115,144,1) 100%);padding:20px;" class="mb-4">
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4" style="background: rgb(133,164,167);
+background: radial-gradient(circle, rgba(133,164,167,1) 0%, rgba(51,53,59,1) 100%);">
+      <div class="card-header py-3" style="background-color:#343A40">
+        <h6 class="m-0" style="font-family: 'Lobster', cursive;color:white;font-size:2rem;">COMMENTS</h6>
+      </div>
+      <div class="card-body" style="color:black;display:inline-block;">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="color:black;">
+            <thead>
+              <tr>
+                <th>Date_of_Comment</th>
+                <th>Unread_Comment</th>
+              </tr>
+            </thead>
+            <tfoot>
+
+            </tfoot>
+            <tbody>
+              <% commentDB.forEach((function (noti) { %>
+
+              <tr>
+
+
+              <%  if(noti.comment.length > 200){ %>
+                    <th><a class="dropdown-item d-flex align-items-center" style="color: black;" href="/deadlink"><%=noti.date%></a></th>
+                  <th class="readmore" id="<%= noti.comment %>">
+                  <%=noti.comment.substring(0, 200) %>
+
+                    <span style="cursor: pointer;color:#383B41;" onMouseOver="this.style.color='black'" onMouseOut="this.style.color='#383B41'"> ...Read More</span> %></th>
+              <%  }else{ %>
+                    <th><a class="dropdown-item d-flex align-items-center" style="color: black;" href="/deadlink"><%=noti.date%></a></th>
+                    <th><%=noti.comment%></th>
+              <%  } %>
+
+
+
+              </tr>
+              <% })); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="/vendorAdmin/jquery/jquery.min.js"></script>
+    <script src="/vendorAdmin/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/vendorAdmin/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/jsAdmin/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="/vendorAdmin/datatables/jquery.dataTables.min.js"></script>
+    <script src="/vendorAdmin/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/jsAdmin/demo/datatables-demo.js"></script>
+
+    <script type="text/javascript">
+    var open = false;
+    var hideagain = `<span style="cursor: pointer;color:#383B41;" onMouseOver="this.style.color='black'" onMouseOut="this.style.color='#383B41'"> ...Hide</span>`;
+    var seeagain = `<span style="cursor: pointer;color:#383B41;" onMouseOver="this.style.color='black'" onMouseOut="this.style.color='#383B41'"> ...Read More</span>`;
+
+      $( ".readmore" ).click(function() {
+          var complete = $(this).attr('id');
+          var check = complete.substring(0, 200);
+
+          open = !open;
+
+          if(open){
+            $(this).html(complete + hideagain);
+          }else {
+
+            $(this).html(check + seeagain);
+          }
+      });
+    </script>
+
+  </body>
+</html>

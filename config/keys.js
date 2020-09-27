@@ -1,3 +1,3 @@
 module.exports = {
-  MongoURI: "mongodb://localhost:27017/movieWeb"
+  MongoURI: "mongodb+srv://admin-minmaw:CinemaMyanmar21112@cinemamyanmar.cbm8n.mongodb.net/CinemaMyanmar"
 }

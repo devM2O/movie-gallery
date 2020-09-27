@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _ = require("lodash"); //require lodash
 
+
 //require jQuery
 var jsdom = require("jsdom");
 const {
@@ -19,13 +20,16 @@ global.document = document;
 var $ = jQuery = require('jquery')(window);
 //end require jQuery
 
+
 //require mongoose
 const mongoose = require('mongoose');
+
 
 //connect flash and session and passport
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
+
 
 //Express app
 const app = express();
@@ -40,15 +44,18 @@ mongoose.connect(db, {useNewUrlParser: true,useUnifiedTopology: true})
 .then(()=> console.log("MongoDB connected"))
 .catch(err=> console.log(err));
 
+
 //View engine
 app.set('view engine', 'ejs');
 //Static public
 app.use(express.static("public"));
 
+
 //BodyParser
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+
 
 //Express session
 app.use(session({
@@ -69,11 +76,15 @@ app.use((req, res, next)=>{
   next();
 });
 
+
+
 //Routes
 app.use('/users', require('./routes/users'));
 app.use('/', require('./routes/admin'));
 app.use('/', require('./routes/enduser'));
 app.use('/', require('./routes/forget'));
+app.use('/', require('./routes/photoUpload'));
+app.use('/', require('./routes/categories'));
 
 
 const port = process.env.PORT || 3000;

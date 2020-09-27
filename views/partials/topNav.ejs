@@ -17,14 +17,18 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
+
   <link href="/cssAdmin/sb-admin-2.css" rel="stylesheet">
 
   <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
-</head>
+
+  </head>
 
 <body id="page-top">
 
@@ -32,7 +36,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#3F474D;">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
@@ -69,7 +73,8 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="py-2 collapse-inner rounded" style="background-color:white;">
-            <a class="collapse-item" href="/upload" style="">Upload</a>
+            <a class="collapse-item" href="/allvideos" style="">All Videos</a>
+            <a class="collapse-item" href="/popular" style="">Popular Videos</a>
           </div>
         </div>
       </li>
@@ -95,7 +100,7 @@
       <div id="content">
 
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow">
+        <nav class="navbar navbar-expand topbar static-top shadow" style="background-color:#343A40;">
 
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -115,105 +120,51 @@
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
+                <span class="badge badge-danger badge-counter"><%= commentDB.length %></span>
               </a>
               <!-- Dropdown - Alerts -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown" style="background-color:#E5E0E4;">
-                <h6 class="dropdown-header">
-                  Comment Center
+                <h6 class="dropdown-header" style="background-color:#343A40;font-family: Serif;font-size:1rem;">
+                  Dead Link Reports
                 </h6>
 
-                <% var i = 0; %>
-                <% commentDB.forEach((function (noti) { %>
-                <% i += 1; %>
-                <% if(i <= 5){ %>
+                          <div class="notiBar" style="max-height:400px !important;overflow-y: scroll;width:auto;">
+                                <% var i = 0; %>
+                                <% commentDB.forEach((function (noti) { %>
 
-                  <% if(noti.comment.length > 100){ %>
+                                  <% if(noti.comment.length > 100){ %>
+                                <a class="dropdown-item d-flex align-items-center" href="/noti/<%= noti._id %>">
+                                  <div class="mr-3">
+                                    <div class="icon-circle bg-primary">
+                                      <i class="fas fa-file-alt text-white"></i>
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <div style="color:black;opacity:0.6;"><%= noti.date %></div>
+                                    <span class="font-weight-bold"><%= noti.comment.substring(0, 100) %> <span style="cursor: pointer;color:grey;" onMouseOver="this.style.color=black" onMouseOut="this.style.color=grey"> ...Read More</span></span>
+                                  </div>
+                                </a>
+                                <%}else{ %>
+                                  <a class="dropdown-item d-flex align-items-center" href="/noti/<%= noti._id %>">
+                                    <div class="mr-3">
+                                      <div class="icon-circle bg-primary">
+                                        <i class="fas fa-file-alt text-white"></i>
+                                      </div>
+                                    </div>
+                                    <div>
+                                      <div style="color:black;opacity:0.6;"><%= noti.date %></div>
+                                      <span class="font-weight-bold"><%= noti.comment%></span>
+                                    </div>
+                                  </a>
 
-                <a class="dropdown-item d-flex align-items-center" href="/select/<%= noti.vname %>">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div style="color:black;opacity:0.6;"><%= noti.vname %>, <%= noti.date %></div>
-                    <span class="font-weight-bold"><%= noti.comment.substring(0, 100) + "..." %></span>
-                  </div>
+                                <%}%>
+                                <% })); %>
+                              </div>
 
-                </a>
-                <%}else{ %>
-
-                  <a class="dropdown-item d-flex align-items-center" href="/select/<%= noti.vname %>">
-                    <div class="mr-3">
-                      <div class="icon-circle bg-primary">
-                        <i class="fas fa-file-alt text-white"></i>
-                      </div>
-                    </div>
-                    <div>
-                      <div style="color:black;opacity:0.6;"><%= noti.vname %>, <%= noti.date %></div>
-                      <span class="font-weight-bold"><%= noti.comment%></span>
-                    </div>
-
-                  </a>
-                  <%}%>
-                <%}%>
-                <% })); %>
-
-                <a class="dropdown-item text-center" style="color:black;opacity:0.7;" href="#">Show All Alerts</a>
+                <a class="dropdown-item text-center" href="/allalerts" style="background-color:grey;font-family: Serif;font-size:1rem;color:black;" onMouseOver="this.style.color='white'" onMouseOut="this.style.color='black'">Show All Alerts</a>
               </div>
             </li>
 
-
-            <!-- Nav Item - Messages -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">7</span>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header">
-                  Message Center
-                </h6>
-
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div class="font-weight-bold">
-                    <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
-                    <div class="small text-gray-500">Emily Fowler · 58m</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-                    <div class="status-indicator"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
-                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-                    <div class="status-indicator bg-warning"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
-                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                  </div>
-                </a>
-
-
-
-                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-              </div>
-            </li>
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -224,22 +175,22 @@
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="background: rgb(49,50,52);
-      background: linear-gradient(90deg, rgba(49,50,52,1) 1%, rgba(121,142,145,1) 50%, rgba(129,115,144,1) 100%);padding:20px;">
-                <a class="dropdown-item" href="#">
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" style="background: rgb(129,136,150);
+background: linear-gradient(90deg, rgba(129,136,150,1) 0%, rgba(121,142,145,1) 50%, rgba(129,115,144,1) 100%);padding:20px;">
+                <a class="dropdown-item" href="#" style="font-family:Serif;font-weight:bold;">
                   <i class="fas fa-user fa-sm fa-fw mr-2 "></i>
                   Profile
                 </a>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="#" style="font-family:Serif;font-weight:bold;">
                   <i class="fas fa-cogs fa-sm fa-fw mr-2 "></i>
                   Settings
                 </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 "></i>
-                  Activity Log
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#cacheModal" style="font-family:Serif;font-weight:bold;">
+                  <i class="far fa-trash-alt"></i>
+                  Clear Cache
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" style="font-family:Serif;font-weight:bold;">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 "></i>
                   Logout
                 </a>

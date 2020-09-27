@@ -1,108 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+  <%- include('partials/homeHeader'); %>
 
-<head>
+  <div class="page-wrapper" style="background-color: #25262C;border-radius: 10px;">
+    <!--page-wrapper-->
+    <div class="post-slider">
+      <!--post-slider-->
+      <h1 class="slider-title" style="font-family: 'Lobster', cursive;color: white;">Trending Videos</h1>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>yourcinema</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="https://fonts.googleapis.com/css?family=Poppins:100,300,500,600" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-  <!-- css slick -->
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-  <!-- js slick -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/home.css">
-
-
-
-
-</head>
-
-<body>
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" >
-    <div class="container">
-      <a class="navbar-brand" href="#">yourcinema.com</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
-          <li class="nav-item d-block d-sm-block d-md-none" style="width:50%">
-            <div class="input-group">
-              <input type="text" id="myInput" class="form-control" placeholder="Search for...">
-              <span class="input-group-append">
-                <button class="btn btn-secondary " type="button">Go!</button>
-              </span>
-            </div>
-          </div>
-          </li>
-        </ul>
+      <div class="hidePN">
+        <i class="fas fa-chevron-left prev"></i>
+        <i class="fas fa-chevron-right next"></i>
       </div>
-    </div>
-  </nav>
 
-  <!-- Page Content -->
+      <div class="post-wrapper">
+        <!--post-wrapper-->
+        <% if(homePo !== null){ %>
+        <% homePo.forEach((function (vid) { %>
 
-
-  <div class="container my-4 ads">
-    <div class="" style="background-color: #F1EDF3; padding: 20px;border-radius: 5px;">
-      <p class="font-weight-bold" style="color: black;">ဤနေရာတွင်ကြော်ငြာများထည့်သွင်းနိုင်သည်</p>
-
-      <p style="color: black;"><strong>ဆက်သွယ်ရန် 09689882829</p>
-    </div>
-
-
-    <div class="page-wrapper" style="background-color: #25262C;border-radius: 10px;">
-      <!--page-wrapper-->
-      <div class="post-slider">
-        <!--post-slider-->
-        <h1 class="slider-title" style="font-family: 'Lobster', cursive;color: white;">Trending Videos</h1>
-
-        <div class="hidePN">
-          <i class="fas fa-chevron-left prev"></i>
-          <i class="fas fa-chevron-right next"></i>
-        </div>
-
-        <div class="post-wrapper">
-          <!--post-wrapper-->
-
-          <% homeVideo.forEach((function (vid) { %>
-            <% for(var i=0; i<20; i++){ %>
-          <div class="post mb-4">
-            <a href="/select/<%= vid.name %>">
+        <div class="post mb-4">
+          <a href="/select/<%= vid.name %>">
             <!-- label-->
             <div class="label">
               <!-- label-->
-              <img class="image slider-image" src="<%= vid.image %>" alt="">
+              <img class="image slider-image" src="/uploads/<%= vid.image %>" alt="">
               <div class="middle"><i class="far fa-play-circle playicon"></i></div>
               <div class="bottom-left">
                 <p class="rating"><%= vid.rating %></p>
@@ -110,177 +29,70 @@
             </div> <!-- label-->
             <p class="movieName" style="font-size:0.8em;display:none;"> <%= vid.name %> </p>
           </a>
-          </div> <!-- label-->
-          <% } %>
-          <% })); %>
+        </div> <!-- label-->
+      
+        <% })); %>
+        <% } %>
 
-
-        </div>
-        <!--post-wrapper-->
       </div>
-      <!--post-slider-->
+      <!--post-wrapper-->
     </div>
-    <!--page-wrapper-->
+    <!--post-slider-->
+  </div>
+  <!--page-wrapper-->
+
+
+  <div class="container">
+    <div class="row">
 
 
 
 
+      <div class="col-lg-8">
+
+
+        <div class="row gallery-items container" style="background-color: #25262C;border-radius:20px;padding:25px 10px 0px 10px;margin: 0px">
+          <% if(noMatch !== null){ %>
+              <h5 style="color:white;margin:auto;margin-bottom:20px;"><%= noMatch %></h5>
+            <% } %>
+
+            <% if(homeVideo !== null){ %>
+          <% homeVideo.forEach((function (vid) { %>
+
+
+          <div class="col-3 col-lg-2 col-md-3 col-sm-3 item">
+            <a href="/select/<%= vid.name %>">
+              <div class="label">
+                <!-- label-->
+                <div class="card">
+                  <!-- card-->
+                  <img class="card-img-top image" src="/uploads/<%= vid.image %>" alt="">
+                </div> <!-- card-->
+                <div class="middle"><i class="far fa-play-circle playicon"></i></div>
+                <div class="bottom-left">
+                  <p class="rating"><%= vid.rating %></p>
+                </div>
+              </div> <!-- label-->
+              <p class="movieName" style="font-size:0.8em;"> <%= vid.name %> </p>
+            </a>
+          </div>
+
+
+          <% })); %>
+          <% } %>
 
 
 
-    <div class="container">
-      <div class="row">
 
+        </div><!-- /.row   &#9733; &#9733; &#9733; &#9733; &#9734;-->
 
+        <div class="pagination">
 
-
-        <div class="col-md-8">
-
-
-            <div class="row gallery-items container" style="background-color: #25262C;border-radius:20px;padding:25px 10px 0px 10px;margin: 0px">
-
-              <% homeVideo.forEach((function (vid) { %>
-                <% for(var i=0; i<50; i++){ %>
-
-              <div class="col-3 col-lg-2 col-md-3 col-sm-3 item">
-                <a href="/select/<%= vid.name %>">
-                <div class="label">
-                  <!-- label-->
-                  <div class="card">
-                    <!-- card-->
-                    <img class="card-img-top image" src="<%= vid.image %>" alt="">
-                  </div> <!-- card-->
-                  <div class="middle"><i class="far fa-play-circle playicon"></i></div>
-                  <div class="bottom-left">
-                    <p class="rating"><%= vid.rating %></p>
-                  </div>
-                </div> <!-- label-->
-                <p class="movieName" style="font-size:0.8em;"> <%= vid.name %> </p>
-                </a>
-              </div>
-
-              <% } %>
-              <% })); %>
-
-
-
-            </div><!-- /.row   &#9733; &#9733; &#9733; &#9733; &#9734;-->
-
-            <div class="pagination">
-
-              <i class="fas fa-angle-double-left prevv"></i>
-              <p class="middle-text">showing page <span class="page-num"></span> of <span class="pageNum"></span></p>
-              <i class="fas fa-angle-double-right nextt"></i>
-            </div>
-
-
+          <i class="fas fa-angle-double-left prevv"></i>
+          <p class="middle-text">showing page <span class="page-num"></span> of <span class="pageNum"></span></p>
+          <i class="fas fa-angle-double-right nextt"></i>
         </div>
 
 
 
-
-
-
-        <!-- Sidebar Widgets Column -->
-        <div class="col-md-4 sidebar">
-
-          <!-- Search Widget -->
-          <div class="card my-4" style="background-color: #25262C; border-radius: 5px;">
-            <h5 class="card-header" style="background-color: #2E2E2E;">Search</h5>
-            <div class="card-body">
-              <div class="input-group">
-                <input type="text" id="myInput" class="form-control" placeholder="Search for...">
-                <span class="input-group-append">
-                  <button class="btn btn-secondary " type="button">Go!</button>
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Categories Widget -->
-          <div class="card my-4" style="background-color: #25262C;border-radius: 5px;">
-            <h5 class="card-header" style="background-color: #2E2E2E;">Categories</h5>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-lg-6">
-                  <ul class="list-unstyled mb-0">
-                    <li>
-                      <a href="#">Bollywood</a>
-                    </li>
-                    <li>
-                      <a href="#">Animation</a>
-                    </li>
-                    <li>
-                      <a href="#">Action</a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-lg-6">
-                  <ul class="list-unstyled mb-0">
-                    <li>
-                      <a href="#">Comedy</a>
-                    </li>
-                    <li>
-                      <a href="#">Horror</a>
-                    </li>
-                    <li>
-                      <a href="#">Drama</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Side Widget -->
-          <div class="card my-4" style="border-radius: 5px;">
-            <h5 class="card-header" style="background-color: #2E2E2E;">ဆက်သွယ်ရန် 09689882829</h5>
-            <div class="card-body">
-              ဤနေရာတွင်ကြော်ငြာများထည့်သွင်းနိုင်သည်
-            </div>
-          </div>
-
-        </div>
-      </div> <!-- row-->
-    </div> <!-- container-->
-
-
-    <!-- Footer -->
-    <footer class="py-3 bg-dark" style="border-radius: 5px;margin-top: 20px;">
-
-        <p class="m-0 text-center text-white">Copyright &copy; Your Cinema 2020</p>
-
-    </footer>
-
-
-    <script type="text/javascript" src="js/home.js"></script>
-
-    <!-- LIFO example
-
-      <script type="text/javascript">
-        const plants = ['broccoli', 'cauliflower', 'cabbage', 'kale', 'tomato'];
-
-        var i;
-        for (i = 0; i < plants.length;) {
-          var y = plants.pop();
-          alert(y);
-        }
-        alert(plants);
-      </script>
-
-LIFO example -->
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Page level plugins -->
-    <script src="vendorAdmin/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendorAdmin/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="jsAdmin/demo/datatables-demo.js"></script>
-
-
-
-</body>
-
-</html>
+          <%- include('partials/homeFooter'); %>

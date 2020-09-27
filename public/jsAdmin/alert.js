@@ -3,5 +3,5 @@
   if (message.length) {
     setTimeout(function() {
       message.fadeOut('slow');
-    }, 5000);
+    }, 3000);
   }

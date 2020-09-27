@@ -1,0 +1,65 @@
+<%- include('partials/topNav'); %>
+
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid" style="background: rgb(121,142,145);
+background: linear-gradient(90deg, rgba(121,142,145,1) 0%, rgba(121,142,145,1) 56%, rgba(129,115,144,1) 79%);padding:20px;">
+
+      <!-- Page Heading -->
+
+      <p class="text-white">Popular movies must be at least 10 videos.</p>
+      <div class="" style="width:50%;margin:auto;">
+        <%- include ./partials/messages %>
+      </div>
+      <!-- DataTales Example -->
+      <div class="card shadow mb-4 mt-4" style="background-color:#effffb;width:93%;margin: auto;">
+        <div class="card-header py-3" style="background-color:#343A40;">
+          <h6 class="m-0" style="font-family: 'Lobster', cursive;color:white;font-size:2rem;">Popular Movies</h6>
+        </div>
+        <div class="card-body" style="color:black;display:inline-block;">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="color:black;">
+              <thead>
+                <tr class="text-center">
+                  <th>Name</th>
+                  <th>Rating</th>
+                  <th>Release Date</th>
+                  <th>Categorie</th>
+                  <th>Remove</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr class="text-center">
+                  <th>Name</th>
+                  <th>Rating</th>
+                  <th>Release Date</th>
+                  <th>Categorie</th>
+                  <th>Remove</th>
+                </tr>
+              </tfoot>
+              <tbody>
+                <% video.forEach((function (vd) { %>
+                <tr class="text-center">
+                  <td><%= vd.name %></td>
+                  <td><%= vd.rating %></td>
+                  <td><%= vd.release %></td>
+                  <td><%= vd.categorie %></td>
+                  <td><a class="removeItem" id="<%= vd._id %>" style="text-decoration:none;" href="#" data-toggle="modal" data-target="#removeModal">
+                      <i class="far fa-trash-alt" style="font-size:1.5rem;color:red;" onMouseOver="this.style.color='yellow'" onMouseOut="this.style.color='red'"></i>
+                    </a>
+                    </td>
+                </tr>
+                <% })); %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- /.container-fluid -->
+
+
+
+
+    <%- include('partials/footer'); %>

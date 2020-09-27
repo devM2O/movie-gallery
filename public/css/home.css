@@ -221,3 +221,4 @@ body {
 h5{
   font-family: 'Lobster', cursive;color: white;
 }
+a:hover{color:hotpink; text-decoration: none;}
