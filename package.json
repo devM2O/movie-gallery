@@ -8,6 +8,9 @@
   },
   "author": "MinnMawOo",
   "license": "ISC",
+  "engines": {
+    "node": "14.12.0"
+  },
   "dependencies": {
     "async": "^3.2.0",
     "bcryptjs": "^2.4.3",
