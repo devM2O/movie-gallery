@@ -65,6 +65,16 @@ body {
     height: 15vw;
     object-fit: cover;
   }
+  .movieName{
+    width:100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 2px;
+    font-size:0.7em;
+    font-family: serif;
+    color: white;
+  }
   .gallery-items{
     padding:25px 10px 0px 10px;
   }
@@ -77,6 +87,16 @@ body {
     width: 100%;
     height: 18vw;
     object-fit: cover;
+  }
+  .movieName{
+    width:120%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 2px;
+    font-size:0.7em;
+    font-family: serif;
+    color: white;
   }
   .gallery-items{
     padding:25px 10px 0px 10px;
@@ -97,6 +117,16 @@ body {
     width: 100%;
     height: 20vw;
     object-fit: cover;
+  }
+  .movieName{
+    width:120%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 2px;
+    font-family: serif;
+    color: white;
+    font-size:0.7em;
   }
   .gallery-items{
     padding:25px 10px 0px 10px;
@@ -123,6 +153,16 @@ body {
     width: 100%;
     height: 25vw;
     object-fit: cover;
+  }
+  .movieName{
+    width:137%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 2px;
+    font-size:0.7em;
+    font-family: serif;
+    color: white;
   }
   .gallery-items{
     padding:25px 25px 0px 0px;
@@ -160,6 +200,16 @@ body {
     height: 11vw;
     object-fit: cover;
   }
+  .movieName{
+    width:110%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 2px;
+    font-family: serif;
+    font-size:0.8em;
+    color: white;
+  }
   .gallery-items{
     padding:25px 10px 0px 10px;
   }
@@ -169,6 +219,16 @@ body {
   .gallery-items{
     padding:25px 10px 0px 10px;
   }
+  .movieName{
+    width:100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 2px;
+    font-family: serif;
+    color: white;
+    font-size:0.8em;
+  }
   .card img{
     width: 100%;
     height: 8vw;
@@ -177,15 +237,15 @@ body {
 }
 
 /* image name */
-.movieName{
-  width:137%;
+/* .movieName{
+  width:100%;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
   padding: 2px;
   font-family: serif;
   color: white;
-}
+} */
 
 
 /* label and hover */
