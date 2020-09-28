@@ -128,7 +128,7 @@ router.get('/delete/:dataID',ensureAuthenticated, function(req, res) {
 
    Video.findOne({_id: dataID}, function (err, item) {
      let img = item.image;
-     fs.unlinkSync(`./public/uploads/${img}`)
+     fs.unlinkSync(`./uploads/${img}`)
      Video.findByIdAndRemove(dataID, function(err) { //findByIdAndRemove from item table
        if (err) {
          console.log(err);

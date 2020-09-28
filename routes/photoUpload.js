@@ -15,7 +15,7 @@ const path = require('path');
 var fs = require('fs');
 //set storage engine for file upload
 const storage = multer.diskStorage({
-  destination: './public/uploads',
+  destination: './uploads',
   filename: function (req, file, cb) {
     cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
   }
@@ -54,7 +54,7 @@ const {categorie,rating, movieN, release, dLink, review} = req.body;
     res.redirect('/dashboard');
   }else{
     if(!rating || !movieN || !dLink || !review || !release){
-      fs.unlinkSync(`./public/uploads/${req.file.filename}`)
+      fs.unlinkSync(`./uploads/${req.file.filename}`)
       req.flash('error_msg', 'All fields are required');
       res.redirect('/dashboard');
     }else {
@@ -95,7 +95,7 @@ router.post('/editVideo',ensureAuthenticated,upload.single('editImage'), functio
     res.redirect("/allvideos");
   }else {
     let imgN = req.file.filename;
-    fs.unlinkSync(`./public/uploads/${vImg}`);
+    fs.unlinkSync(`./uploads/${vImg}`);
     Video.findByIdAndUpdate(id, { image: imgN,name: movieN, rating: rating, link: dLink, review: review, release: release, categorie: categorie, popular: options}, function (err, docs) {
       if(!err){
         req.flash('success_msg', `successfully updated`);
