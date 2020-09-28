@@ -65,6 +65,9 @@ body {
     height: 15vw;
     object-fit: cover;
   }
+  .gallery-items{
+    padding:25px 10px 0px 10px;
+  }
   .movieName, .rating{
     font-size: 0.8em;
   }
@@ -72,11 +75,17 @@ body {
     display: none;
   }
 }
-@media (min-width: 400px) and (max-width: 653px) {
+@media (min-width: 400px) and (max-width: 590px) {
   .card img{
     width: 100%;
-    height: 18vw;
+    height: 23vw;
     object-fit: cover;
+  }
+  .gallery-items{
+    padding:25px 20px 0px 0px;
+  }
+  .card{
+    width: 90px;
   }
   .movieName, .rating{
     font-size: 0.7em;
@@ -90,6 +99,15 @@ body {
     width: 100%;
     height: 11vw;
     object-fit: cover;
+  }
+  .gallery-items{
+    padding:25px 10px 0px 10px;
+  }
+}
+
+@media (min-width: 1013px) and (max-width: 4000px) {
+  .gallery-items{
+    padding:25px 10px 0px 10px;
   }
 }
 
