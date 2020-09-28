@@ -75,14 +75,33 @@ body {
     display: none;
   }
 }
-@media (min-width: 400px) and (max-width: 590px) {
+@media (min-width: 560px) and (max-width: 590px) {
   .card img{
     width: 100%;
-    height: 23vw;
+    height: 18vw;
     object-fit: cover;
   }
   .gallery-items{
-    padding:25px 20px 0px 0px;
+    padding:25px 10px 0px 10px;
+  }
+  .card{
+    width: 90px;
+  }
+  .movieName, .rating{
+    font-size: 0.7em;
+  }
+  .sidebar{
+    display: none;
+  }
+}
+@media (min-width: 400px) and (max-width: 560px) {
+  .card img{
+    width: 100%;
+    height: 25vw;
+    object-fit: cover;
+  }
+  .gallery-items{
+    padding:25px 25px 0px 0px;
   }
   .card{
     width: 90px;
@@ -108,6 +127,11 @@ body {
 @media (min-width: 1013px) and (max-width: 4000px) {
   .gallery-items{
     padding:25px 10px 0px 10px;
+  }
+  .card img{
+    width: 100%;
+    height: 8vw;
+    object-fit: cover;
   }
 }
 
