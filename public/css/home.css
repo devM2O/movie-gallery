@@ -10,14 +10,14 @@ body {
 }
 .post-slider .post-wrapper{ /* carousel size */
   width: 99%;
-  height: 160px;
+  height: 145px;
   margin: 0px auto;
   overflow: hidden;
 }
 
 .post-slider .post-wrapper .post{  /* image container size */
   width: 100px;
-  height: 140px;
+  height: 125px;
   margin: 0px 10px;
   display: inline-block;
   border: 1px solid #ccc;
@@ -48,7 +48,7 @@ body {
 }
 .post-wrapper img{   /* image size */
   width: 100%;
-  height: 137px;
+  height: 123px;
   object-fit: cover;
   border-radius: 5px;
 }
@@ -67,9 +67,6 @@ body {
   }
   .gallery-items{
     padding:25px 10px 0px 10px;
-  }
-  .movieName, .rating{
-    font-size: 0.8em;
   }
   .sidebar{
     display: none;
@@ -117,9 +114,6 @@ body {
     -ms-transform: translate(-50%, -50%);
     text-align: center;
   }
-  .movieName, .rating{
-    font-size: 0.7em;
-  }
   .sidebar{
     display: none;
   }
@@ -156,9 +150,6 @@ body {
   -ms-transform: translate(-50%, -50%);
   margin-left: 19%;
 }
-  .movieName, .rating{
-    font-size: 0.7em;
-  }
   .sidebar{
     display: none;
   }
@@ -187,7 +178,7 @@ body {
 
 /* image name */
 .movieName{
-  width:100%;
+  width:137%;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
