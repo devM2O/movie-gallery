@@ -127,7 +127,7 @@ body {
 @media (min-width: 400px) and (max-width: 524px) {
   .card img{
     width: 100%;
-    height: 24vw;
+    height: 25vw;
     object-fit: cover;
   }
   .gallery-items{
