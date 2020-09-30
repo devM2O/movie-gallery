@@ -2,12 +2,14 @@ const express = require('express');
 const router = express.Router();
 const {ensureAuthenticated} = require('../config/auth');
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 const cron = require("node-cron"); //cron scheduller
 mongoose.set('useFindAndModify', false); //need for this `findOneAndUpdate()` and `findOneAndDelete()` without the `useFindAndModify`
 
 const path = require('path');
 var fs = require('fs');
 
+const User = require('../models/User');
 //declare name to call models/Enduser
 const myModel = require('../models/Enduser');
 //call Comment model from myModel
@@ -153,5 +155,41 @@ router.get('/remove/:dataID',ensureAuthenticated, function(req, res) {
 });
 
 //------------------------Export Modules--------------------------//
+
+router.get('/profile', function (req, res) {
+
+  User.find({email: req.user.email}, function (err, foundUser) {
+    if(!err){
+      res.render('profile', {
+        name: req.user.name,
+        email: req.user.email,
+        image: foundUser
+      });
+    }
+  })
+})
+
+//------------------------Update PP--------------------------//
+
+router.post("/updatePP", function (req, res) {
+  const{name, email, password} = req.body;
+
+  bcrypt.compare(password, req.user.password, (err, isMatch) => {
+    if (err) throw err;
+    if (isMatch) {
+      let id = req.user._id;
+      User.findByIdAndUpdate(id, {name: name, email: email}, function (err, docs) {
+        if (!err){
+            req.flash('ppScc', `successfully updated`);
+            res.redirect('/profile');
+        }
+      });
+    } else {
+      req.flash('ppErr', `Incorrect Password`);
+      res.redirect("/profile");
+    }
+  });
+
+});
 
 module.exports = router;

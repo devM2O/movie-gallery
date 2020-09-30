@@ -3,6 +3,7 @@ const router = express.Router();
 const {ensureAuthenticated} = require('../config/auth');
 const mongoose = require('mongoose');
 
+const User = require('../models/User');
 //declare name to call models/Enduser
 const myModel = require('../models/Enduser');
 
@@ -104,6 +105,31 @@ router.post('/editVideo',ensureAuthenticated,upload.single('editImage'), functio
     });
   }
 
+})
+
+//----------------When Click on UpdatePPimg------------------//
+
+router.post('/updatePPImg',ensureAuthenticated,upload.single('editPP'), function(req, res) {
+  if(!req.file){
+    req.flash('error_msg', 'File type must be jpeg|jpg|png|gif')
+    res.redirect('/profile');
+  }else {
+    let imgN = req.file.filename;
+    User.findOne({email: req.user.email}, function (err, foundUser) {
+      let id = foundUser._id;
+      let old = foundUser.profile;
+      fs.unlinkSync(`./public/uploads/${old}`);
+      
+      var a = 'profile'
+      var b = { [a]: imgN }
+
+      User.findByIdAndUpdate(id, b, function (err, docs) {
+        if (!err){
+            res.redirect('/profile');
+        }
+      });
+    })
+  }
 })
 
 

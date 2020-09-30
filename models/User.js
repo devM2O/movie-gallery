@@ -13,6 +13,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  profile: {
+    type: String,
+    default: "dfPP.png"
+  },
   date: {
     type: Date,
     default: Date.now

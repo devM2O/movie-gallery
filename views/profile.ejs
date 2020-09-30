@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--  This file has been downloaded from bootdey.com    @bootdey on twitter -->
+    <!--  All snippets are MIT license http://bootdey.com/license -->
+    <title>CinemaMyanmar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <div class="view-account" >
+        <section class="module" >
+            <div class="module-inner" >
+                <div class="side-bar">
+                    <div class="user-info">
+                        <% image.forEach((function (profile) { %>
+                        <img class="img-profile img-circle img-responsive center-block" src="/uploads/<%= profile.profile %>" alt="">
+                        <%}));%>
+                        <ul class="meta list list-unstyled">
+                            <li class="name"><%= name %>
+                                <label class="label label-info">Admin Team</label>
+                            </li>
+                        </ul>
+                    </div>
+            		<nav class="side-menu">
+        				<ul class="nav">
+        					<li class="active"><a href="#"><span class="fa fa-user"></span> Profile</a></li>
+                  <li><a href="/dashboard"><span class="fa fa-th"></span> Dashboard</a></li>
+        					<li><a href="/allvideos"><span class="fa fa-credit-card"></span> Data Tables</a></li>
+        				</ul>
+        			</nav>
+                </div>
+                <div class="content-panel">
+
+                  <%- include ./partials/messages %>
+
+
+
+                            <h3 class="fieldset-title">Personal Info</h3>
+                            <form class="form-horizontal" method="post" action="/updatePPImg" enctype="multipart/form-data">
+                              <fieldset class="fieldset" >
+                            <div class="form-group avatar">
+                                <figure class="figure col-md-2 col-sm-3 col-xs-12">
+                                  <% image.forEach((function (profile) { %>
+                                    <img class="img-rounded img-responsive" src="/uploads/<%= profile.profile %>" alt="">
+                                    <%}));%>
+                                </figure>
+                                <div class="form-inline col-md-10 col-sm-9 col-xs-12">
+                                    <input type="file" name="editPP" class="file-uploader pull-left">
+                                    <button type="submit" class="btn btn-sm btn-default-alt pull-left">Update Image</button>
+                                </div>
+                            </div>
+
+                            </fieldset>
+                            </form>
+
+
+                        <form class="form-horizontal" action="/updatePP" method="post">
+                        <fieldset class="fieldset">
+                          <div class="form-group">
+                              <label class="col-md-2 col-sm-3 col-xs-12 control-label">Username</label>
+                              <div class="col-md-10 col-sm-9 col-xs-12">
+                                  <input type="text" class="form-control" name="name" value="<%= name %>" required>
+                              </div>
+                          </div>
+                            <h3 class="fieldset-title">Contact Info</h3>
+                            <div class="form-group">
+                                <label class="col-md-2  col-sm-3 col-xs-12 control-label">Email</label>
+                                <div class="col-md-10 col-sm-9 col-xs-12">
+                                    <input type="email" class="form-control" name="email" value="<%= email %>" required>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2  col-sm-3 col-xs-12 control-label">Password</label>
+                                <div class="col-md-10 col-sm-9 col-xs-12">
+                                    <input type="password" class="form-control" name="password" value="" required>
+                                </div>
+
+                            </div>
+
+                        </fieldset>
+                        <hr>
+                        <div class="form-group">
+                            <div class="col-md-10 col-sm-9 col-xs-12 col-md-push-2 col-sm-push-3 col-xs-push-0">
+                                <input class="btn btn-primary" type="submit" value="Update Profile">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/jsAdmin/alert.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+      $('.nav li').click(function(e) {
+          $('.nav li').removeClass('active');
+          var $this = $(this);
+          if (!$this.hasClass('active')) {
+              $this.addClass('active');
+          }
+        });
+  });
+
+
+</script>
+
+</body>
+</html>

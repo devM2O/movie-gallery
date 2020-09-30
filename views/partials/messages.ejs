@@ -3,7 +3,6 @@
 <% errors.forEach(function (error) { %>
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
   <%= error.msg %>
-  &nbsp&nbsp<i class="fas fa-exclamation-triangle"></i>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -30,7 +29,6 @@
 
 <div class="alert alert-warning alert-dismissible fade show sweetEAl text-center" role="alert">
   <%= error_msg %>
-  &nbsp&nbsp<i class="fas fa-exclamation-triangle"></i>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -44,10 +42,21 @@
 
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
   <%= error %>
-  &nbsp&nbsp<i class="fas fa-exclamation-triangle"></i>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 
+<% } %>
+
+<% if(ppErr != '') {%>
+  <div class="alert" style="color: red;">
+    <%= ppErr %>
+  </div>
+<% } %>
+
+<% if(ppScc != '') {%>
+  <div class="alert" style="color: green;">
+    <%= ppScc %>
+  </div>
 <% } %>
